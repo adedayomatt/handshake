@@ -1,0 +1,18 @@
+version: '2'
+services:
+  bnpl_service:
+      build: .
+      container_name: bnpl_service
+      networks:
+          - servers_external_network
+      ports:
+          - 9800:80
+      env_file:
+          - ./.env
+      tty: true
+      volumes:
+          - .:/usr/src/app
+          - ./bin/log/bnpl_service:/var/log/application/bnpl_service
+networks:
+  servers_external_network:
+    external: true
